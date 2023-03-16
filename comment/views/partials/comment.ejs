@@ -1,0 +1,123 @@
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+
+
+<div class="box">
+        <div class="side">
+           <div class="sidebig">
+            <img src="images/icon-plus.svg" class="icons">
+            <div class="score"><%= num.score%></div>
+            <img src="images/icon-minus.svg" class="minusicons">
+           </div>
+            
+            <!-- <div><%= num.Id %></div> -->
+        </div>
+
+        <!-- <div class="top"></div> -->
+        <div class="second">
+            <div class="top">
+               <% let userinfo= JSON.parse(num.user) %> 
+               <% let imag=userinfo.image %>
+               <% let imgpath=imag.png%>
+               <% let name=userinfo.username %>
+               <% let ind=num.replies%>
+               <% let ind1=ind.length%>
+               <img src="<%= imgpath %>" class="profile">
+               <p class="name"><%=name%></p>
+               
+               
+               
+               <p class="create"><%= num.createdat%></p>
+               <p class="hidden"><%= num.Id%></p>
+               <div class="reply" onclick="(replying(this.previousElementSibling,this.parentNode.parentNode.parentNode.nextElementSibling ))">
+                <img src="images/icon-reply.svg" class="repicon">
+                <p class="rep">Reply</p>
+               </div>
+            </div>
+            <div class="bottom">
+                <%=num.content%>
+            </div>
+        </div>
+</div>
+
+<div class="last1">
+    <div class="lastinside">
+    <%let userprofile=JSON.parse(userdetail) %>
+    <%let profile=userprofile.image%>
+    <%let profilepath=profile.png %>
+    <% let personid=num.Id%>
+   <img src=" <%=profilepath%>" class="lastprofile1"/>
+   <textarea name="last" class="lasttext1" placeholder="Add a comment..."></textarea>
+   <button class="but1" onclick="replyed('<%=userdetail%>',this.previousElementSibling,'<%=num.replies%>')">SEND</button>
+</div>
+</div>
+
+<% let len=JSON.parse(num.replies) %>
+<% let len1=len.length %>
+<%if(len.length >=1 ){%>
+    <div class="replydiv">
+    
+    
+        <% len.map((e,index)=> { %>
+         <div class="replybox">
+            <div class="side">
+                <div class="sidebig">
+                 <img src="images/icon-plus.svg" class="icons">
+                 <div class="score"><%= e.score%></div>
+                 <img src="images/icon-minus.svg" class="minusicons">
+                </div>
+                 
+             </div>
+
+
+             <div class="second">
+                <div class="top">
+                    
+                   
+                   
+                   
+                   
+                   
+                   
+                   <p class="create"><%= e.createdAt%></p>
+                   <p class="hidden"><%=index%></p>
+                   <div class="del" onclick="cancelling('<%=index%>','<%=num.replies%>','<%=num.Id%>')">
+                    <img src="images/icon-delete.svg" class="delicon">
+                    <p class="dele">Delete</p>
+                   </div>
+
+                   <div class="edit" onclick="update(this.parentNode.parentNode.parentNode.nextElementSibling)">
+                    <img src="images/icon-edit.svg" class="edicon">
+                    <p class="edi">Edit</p>
+                   </div>
+
+                </div>
+
+
+                <div class="bottom">
+                    <%=e.content%>
+                </div>
+             </div>
+         </div>
+     
+
+         <div class="last2">
+            <div class="lastinside">
+            <%let userprofile=JSON.parse(userdetail) %>
+            <%let profile=userprofile.image%>
+            <%let profilepath=profile.png %>
+            <% let personid=num.Id%>
+           <img src=" <%=profilepath%>" class="lastprofile1"/>
+           <textarea name="last" class="lasttext1" placeholder="Add a comment..."><%=e.content%></textarea>
+           <button class="but1" onclick="updating(this.previousElementSibling,'<%=index%>','<%=num.Id%>','<%=num.replies%>')">UPDATE</button>
+        </div>
+        </div>
+      <%  })%>
+    </div>
+
+
+    
+<%}%>
+
+   
+
+

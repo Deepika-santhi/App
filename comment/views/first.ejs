@@ -1,0 +1,38 @@
+<head>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<script src="js/index.js"></script>
+
+
+<body>
+    <div class="root">
+        <div class="whole">
+           
+            <div id="hidediv">
+                <div class="black">
+                    <div class="delinside">
+                        <h1>Delete comment</h1>
+                        <p class="info">Are you sure you want to delete this comment? This will remove the comment and can't be undone.</p>
+                        <button class="cancelbut" onclick="cancel()">No,Cancel</button>
+                        <button class="yesbut" onclick="del()">Yes,Delete</button>
+                    </div>
+                </div>
+               
+                </div>
+            <div class="sub_div">
+            <% for(a=0;a < datas.length;a++){ %>
+                <%- include('partials/comment.ejs',{num:datas[a]})%>
+                <% } %>
+            </div>
+          <div class="last">
+                <%let userprofile=JSON.parse(userdetail) %>
+                <%let profile=userprofile.image%>
+                <%let profilepath=profile.png %>
+               <img src=" <%=profilepath%>" class="lastprofile"/>
+               <textarea name="last" class="lasttext" placeholder="Add a comment..." id="commenting"></textarea>
+               <button class="but" onclick="sending('<%=userdetail%>')">SEND</button>
+          </div>
+        </div>
+    </div>
+    
+</body>
